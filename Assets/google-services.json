@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "359716161197",
+    "project_id": "dwarfgame-9fa3a",
+    "storage_bucket": "dwarfgame-9fa3a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:359716161197:android:c0046dfadbdf583205e824",
+        "android_client_info": {
+          "package_name": "com.Company_nn.Dwarf"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCG4paGpgSrqK3OCYVNUdQfaKJpSM3z0DA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
