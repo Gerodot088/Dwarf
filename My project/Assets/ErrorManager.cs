@@ -147,6 +147,8 @@ public class ErrorManager : MonoBehaviour
                 message = "Провайдер авторизации не найден!";
                 break;
             case AuthError.InvalidUserToken:
+                message = "Ошибка токена пользователя!";
+                break;
             case AuthError.UserTokenExpired:
                 message = "Сессия устарела. Войдите в аккаунт заново!";
                 break;
