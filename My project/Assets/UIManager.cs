@@ -4,8 +4,14 @@ using UnityEngine;
 public enum WindowsApp
 {
     Login = 0,
+
     Registration = 1,
-    Menu = 2
+
+    Menu = 2,
+
+    Loading = 3,
+
+    Settings = 4,
 }
 
 public class UIManager : MonoBehaviour
