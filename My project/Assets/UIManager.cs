@@ -12,6 +12,8 @@ public enum WindowsApp
     Loading = 3,
 
     Settings = 4,
+
+    
 }
 
 public class UIManager : MonoBehaviour
