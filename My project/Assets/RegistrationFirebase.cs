@@ -6,10 +6,10 @@ using Firebase.Auth;
 
 public class RegistrationFirebase : MonoBehaviour
 {
-    
     [SerializeField] private TMP_InputField inputFieldName, inputFieldEmail, inputFieldPassword;
     [SerializeField] private ErrorManager errorManager;
     [SerializeField] private UIManager uiManager;
+    [SerializeField] private SettingsController settingsController; // Сюда перетащите Panel_Settings
 
     public void RegisterButton()
     {
@@ -57,8 +57,24 @@ public class RegistrationFirebase : MonoBehaviour
                 }
                 else
                 {
-                    uiManager.ChangeWindows(WindowsApp.Menu);
                     errorManager.UpdateTextError("");
+
+                    // Создаем запись с настройками по умолчанию в Firebase и применяем их
+                    if (FirebaseSaveManager.Instance != null)
+                    {
+                        FirebaseSaveManager.Instance.LoadDataFromCloud(() =>
+                        {
+                            if (settingsController != null)
+                            {
+                                settingsController.ApplyAllSettings();
+                            }
+                            uiManager.ChangeWindows(WindowsApp.Menu);
+                        });
+                    }
+                    else
+                    {
+                        uiManager.ChangeWindows(WindowsApp.Menu);
+                    }
                 }
             }
         }

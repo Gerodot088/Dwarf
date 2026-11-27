@@ -4,13 +4,12 @@ using Firebase.Auth;
 using TMPro;
 using UnityEngine;
 
-
 public class AuthorizationFirebase : MonoBehaviour
 {
-    
     [SerializeField] private TMP_InputField inputFieldEmail, inputFieldPassword;
     [SerializeField] private ErrorManager errorManager;
     [SerializeField] private UIManager uiManager;
+    [SerializeField] private SettingsController settingsController; // Сюда перетащите Panel_Settings
 
     public void LoginButton()
     {
@@ -37,10 +36,25 @@ public class AuthorizationFirebase : MonoBehaviour
         }
         else
         {
-            
             ConnectionFirebase.User = loginTask.Result.User;
-            uiManager.ChangeWindows(WindowsApp.Menu);
             errorManager.UpdateTextError("");
+
+            // Загружаем настройки из Firebase и применяем их перед открытием меню
+            if (FirebaseSaveManager.Instance != null)
+            {
+                FirebaseSaveManager.Instance.LoadDataFromCloud(() =>
+                {
+                    if (settingsController != null)
+                    {
+                        settingsController.ApplyAllSettings();
+                    }
+                    uiManager.ChangeWindows(WindowsApp.Menu);
+                });
+            }
+            else
+            {
+                uiManager.ChangeWindows(WindowsApp.Menu);
+            }
         }
     }
 }
